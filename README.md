@@ -7,7 +7,7 @@ This repository contains various data analysis projects focusing on music stream
 ### Spotify Tracks Analysis
 Analysis of Spotify tracks dataset from Kaggle to explore music trends, audio features, and patterns.
 
-**Dataset Source:** [Spotify Tracks Dataset](https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset/data)
+**Dataset Source:** [Spotify Tracks Dataset - Kaggle](https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset/data)
 
 **Project Location:** `Spotify/`
 
@@ -15,32 +15,32 @@ Analysis of Spotify tracks dataset from Kaggle to explore music trends, audio fe
 - Audio feature analysis (danceability, energy, valence, etc.)
 - Genre and artist popularity trends
 - Temporal analysis of music characteristics
-- Data visualization and insights
+- Data visualization with custom color schemes
 
-## Getting Started
+### Genius Lyrics Dataset Analysis
+Analysis of song lyrics from the Genius platform to understand vocabulary richness and language patterns.
 
-### Prerequisites
-- Python 3.7+
-- Jupyter Notebook
-- Required packages: pandas, numpy, matplotlib, seaborn, plotly
+**Dataset Source:** [Genius Song Lyrics with Language Information - Kaggle](https://www.kaggle.com/datasets/carlosgdcj/genius-song-lyrics-with-language-information/data)
 
-### Installation
-```bash
-pip install pandas numpy matplotlib seaborn plotly jupyter
-```
+**Project Location:** `Genius Lyrics/`
 
-### Usage
-1. Navigate to the project folder
-2. Open the Jupyter notebook
-3. Run the analysis cells
+**Key Features:**
+- Vocabulary richness analysis (unique words vs total words ratio)
+- Language detection and processing
+- Lyrical complexity metrics
+- Word count and distribution analysis
+- Custom feature engineering for text analysis
 
 ## Project Structure
 ```
 ├── README.md
-└── Spotify/
-    ├── dataset.csv
+├── Spotify/
+│   ├── dataset.csv
+│   ├── README.md
+│   └── spotify_analysis.ipynb
+└── Genius Lyrics/
     ├── README.md
-    └── spotify_analysis.ipynb
+    └── [analysis files]
 ```
 
 ## Future Projects
