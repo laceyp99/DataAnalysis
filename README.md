@@ -1,8 +1,12 @@
 # Data Analysis Projects
 
-This repository contains various data analysis projects focusing on music streaming data and trends.
+This repository explores music through audio, lyrics, and streaming datasets.
 
 ## Current Projects
+
+### Does MERT match the groove or the drum kit?
+
+Hear the same drum part on four kits, then hear what changes when the snare moves. The listening report compares MERT's choices across 192 controlled trials. [Open the study and viewing instructions](MERT/README.md).
 
 ### Spotify Tracks Analysis
 Analysis of Spotify tracks dataset from Kaggle to explore music trends, audio features, and patterns.
