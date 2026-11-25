@@ -5,6 +5,8 @@ from itertools import product
 from math import gcd
 from pathlib import Path
 
+from patterns import PATTERNS, SNARE_PARTS
+
 import numpy as np
 from scipy.signal import resample_poly
 import soundfile as sf
@@ -22,14 +24,7 @@ TAIL_FADE = 600  # 25 ms
 END_FADE = 240  # 10 ms
 PEAK_LIMIT = 0.85
 
-# One-indexed beats within each bar. Each tuple is (kick positions, hat positions).
-PATTERNS = {
-    "p1": ((1, 3), (1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5)),
-    "p2": ((1, 2.5, 3.75), (1.5, 2.5, 3.5, 4.5)),
-    "p3": ((1, 1.75, 3, 4.5), (1, 2, 2.5, 3, 4, 4.5)),
-    "p4": ((1, 2, 3, 4), (1.5, 1.75, 2.5, 3.5, 3.75, 4.5, 4.75)),
-}
-SNARE_PARTS = {"3": (3,), "24": (2, 4), "13": (1, 3)}
+
 
 # Linear kick, snare and closed-hat gains. Reused in every clip for each kit.
 KIT_GAINS = {
