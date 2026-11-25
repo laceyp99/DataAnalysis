@@ -5,10 +5,10 @@
 Open [report.html](report.html) in a browser. On Windows, from the repository root:
 
 ~~~powershell
-Start-Process .\MERT\report.html
+Start-Process .\drum-kit-vs-rhythm\report.html
 ~~~
 
-Keep the report next to its audio folder and score table when copying it. The rendered study plays locally without Python. [Read the notebook](report.ipynb) or [inspect the trial scores](trials.csv).
+Keep the report next to its audio folder, score table and [nearest-neighbor explorer](neighbor-exploration.html) when copying it. The rendered study plays locally without Python. [Read the notebook](report.ipynb) or [inspect the trial scores](trials.csv).
 
 ## Experiment
 
@@ -18,7 +18,7 @@ The opening rhythm comparison changes a snare on beat 3 to snares on beats 2 and
 
 ## Reproduce the scores
 
-Use Python 3.11. The following PowerShell commands run from the MERT directory. Supply your own environment path if preferred.
+Use Python 3.11. The following PowerShell commands run from the `drum-kit-vs-rhythm` directory. Supply your own environment path if preferred.
 
 ~~~powershell
 $studyEnv = Join-Path $env:LOCALAPPDATA 'mert-study-env'
@@ -44,13 +44,14 @@ uv pip install --python $studyPython scipy==1.16.1 soundfile==0.13.1
 
 The one-shots, their upstream licenses, and the instrument choices are documented in [sample credits](samples/README.md). The render writes 48 WAV files and [their manifest](manifest.csv). The AVL kits use the same closed-hat recording. Keep that shared sound in mind when interpreting their kit-to-kit comparison.
 
-To rebuild the HTML, install the [Quarto CLI](https://quarto.org/docs/get-started/) and run the following from the MERT directory. The report was rendered with Quarto 1.11.9. It reads the existing CSV and WAVs, so this step can run independently of the model.
+To rebuild the HTML, install the [Quarto CLI](https://quarto.org/docs/get-started/) and run the following from the `drum-kit-vs-rhythm` directory. The report was rendered with Quarto 1.11.9. It reads the existing CSV and WAVs, so this step can run independently of the model.
 
 ~~~powershell
 $reportEnv = Join-Path $env:LOCALAPPDATA 'mert-report-env'
 uv venv --python 3.12 $reportEnv
 $env:QUARTO_PYTHON = Join-Path $reportEnv 'Scripts/python.exe'
 uv pip install --python $env:QUARTO_PYTHON jupyter==1.1.1 plotly==6.5.2
+quarto render neighbor-exploration.ipynb --execute
 quarto render report.ipynb --execute
 Start-Process .\report.html
 ~~~

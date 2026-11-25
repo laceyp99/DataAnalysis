@@ -1,0 +1,5 @@
+body { color: #212b32; background: #faf9f6; }
+#title-block-header { border-bottom: 2px solid #c6d6cf; padding-bottom: 1.15rem; }
+#title-block-header h1 { font-weight: 800; letter-spacing: -.04em; }
+h2 { letter-spacing: -.025em; }
+.lead-finding { font-size: 1.25rem; font-weight: 650; line-height: 1.48; }
