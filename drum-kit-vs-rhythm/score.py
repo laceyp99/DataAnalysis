@@ -96,8 +96,7 @@ def outcome(margin):
     return "tie"
 
 
-def score_trials(features):
-    pooled = {clip: unit_vectors(frames.mean(axis=0)) for clip, frames in features.items()}
+def score_trials(features, pooled):
     aligned = {clip: unit_vectors(frames) for clip, frames in features.items()}
     for pattern, snares, kits in product(PATTERNS, SNARE_PAIRS, combinations(KIT_NAMES, 2)):
         group = "electronic" if "phazite" in kits else "acoustic"
@@ -119,18 +118,29 @@ def score_trials(features):
             )
 
 
+def write_table(filename, header, rows):
+    with NamedTemporaryFile(mode="w", dir=ROOT, encoding="utf-8", newline="", delete=False) as temporary:
+        writer = csv.writer(temporary, lineterminator="\n")
+        writer.writerow(header)
+        writer.writerows(rows)
+    Path(temporary.name).replace(ROOT / filename)
+
+
 def main():
     features = extract_frames()
-    rows = list(score_trials(features))
+    pooled = {clip: unit_vectors(frames.mean(axis=0)) for clip, frames in features.items()}
+    rows = list(score_trials(features, pooled))
     groups = Counter(row[5] for row in rows)
     if groups != {"acoustic": 96, "electronic": 96} or len({row[:5] for row in rows}) != 192:
         raise ValueError(f"Expected 192 distinct trials, split 96 per group. Found {groups}.")
 
-    with NamedTemporaryFile(mode="w", dir=ROOT, encoding="utf-8", newline="", delete=False) as temporary:
-        writer = csv.writer(temporary, lineterminator="\n")
-        writer.writerow(TRIAL_COLUMNS)
-        writer.writerows(rows)
-    Path(temporary.name).replace(ROOT / "trials.csv")
+    clips = sorted(pooled, key=lambda clip: (clip[2], clip[0], clip[1]))
+    ids = ["_".join(clip) for clip in clips]
+    vectors = np.stack([pooled[clip] for clip in clips])
+    matrix = vectors @ vectors.T
+    write_table("loop-similarities.csv", ["clip_id", *ids],
+                ([clip_id, *values] for clip_id, values in zip(ids, matrix)))
+    write_table("trials.csv", TRIAL_COLUMNS, rows)
     print(f"Scored {len(rows)} trials across {len(features)} clips.")
 
 
