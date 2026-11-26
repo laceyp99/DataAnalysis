@@ -2382,7 +2382,7 @@ Figure 3: Each point is one qualifying genre label. The gap is explicit mean lo
 <section id="dataset-and-counting-rules" class="level2">
 <h2 class="anchored" data-anchor-id="dataset-and-counting-rules">Dataset and counting rules</h2>
 <p>The <a href="https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset/data">Spotify Tracks Dataset on Kaggle</a> was collected from the Spotify Web API. Each label starts with the same number of rows, so genre frequency reflects how the dataset was assembled. Spotify’s popularity field is a snapshot score. The CSV has no release dates or per-track play counts.</p>
-<p>The CSV has <strong>114,000 rows across 114 labels</strong> (1,000 rows per label). Cleaning removes 1 incomplete rows and 450 extra rows within track-and-label pairs. <strong>16,299 IDs</strong> appear under multiple labels. A track ID identifies a Spotify version, so a recording may still appear under different IDs.</p>
+<p>The CSV has <strong>114,000 rows across 114 labels</strong> (1,000 rows per label). Cleaning drops 1 for missing values and 450 as duplicates within track-and-label pairs. <strong>16,299 IDs</strong> appear under multiple labels. A track ID identifies a Spotify version, so a recording may still appear under different IDs.</p>
 <section id="musical-key-and-mode" class="level3">
 <h3 class="anchored" data-anchor-id="musical-key-and-mode">Musical key and mode</h3>
 <p>The overview below keeps the original notebook’s key and mode exploration. It uses one row per Spotify track ID and skips keys outside the documented pitch-class range.</p>
