@@ -1,3 +1,5 @@
 dataset.csv
 drum-kit-vs-rhythm/.cache/
 drum-kit-vs-rhythm/__pycache__/
+!/spotify-tracks/data/dataset.csv
+/genius-lyrics/data/
